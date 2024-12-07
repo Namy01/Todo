@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body"  id="otcard">
+                <h3 class="card-title text-center mb-4">
+                    <a href="/"><img src="{% static 'img/LOGO.jpg' %}" alt="" width="30px"></a> To Do List</h3>
+                <ul class="list-group">
+                    {% for todo in todos %}
+                    <li id="card" class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <input class="form-check-input me-2" type="checkbox">
+                            {{ todo.title }}
+                        </div>
+                        <div>
+                            <a href="{% url 'todo-update' todo.id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'delete' todo.id%}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+               <a href="{% url 'add' %}" class="btn btn-primary mt-2" id="btn"> Add Todo </a>
+               </ul>
+               </div>
+            </div>
+        </div>
+
+
+{% endblock content %}
